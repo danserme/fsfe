@@ -4,14 +4,16 @@
         Welcome
     </body>
     <script>
-        let ws;
-        //check for the protocol and use it
-        const proto = window.location.protocol === 'https:' ? 'wss' : 'ws';
-        ws = new WebSocket(`${proto}://${window.location.host}`);
 
-        //to make something on the page
-        ws.onmessage = (event) => {
-            console.log(data);
-        };
+        let ws;
+        try {
+          // Choose correct websocket proto
+          const proto = window.location.protocol === 'https:' ? 'wss' : 'ws';
+          ws = new WebSocket(`${proto}://${window.location.host}`);
+        } catch(e) {
+          // 
+        }
+        ws.onmessage = (event) => {console.log(event.data) }
+        
     </script>
 </html>
